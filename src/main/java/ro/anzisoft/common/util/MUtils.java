@@ -416,8 +416,10 @@ public class MUtils {
 		String crlf = System.getProperty("line.separator");
 
 		// daca are entr la sf il scot!!
-		if (s.substring(s.length() - crlf.length()).equals(crlf))
-			s = s.substring(0, s.length() - crlf.length());
+		s = nz(s);
+		if (!isNullOrEmpty(s))
+			if (s.substring(s.length() - crlf.length()).equals(crlf))
+				s = s.substring(0, s.length() - crlf.length());
 		return s;
 	}
 

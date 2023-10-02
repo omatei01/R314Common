@@ -7,7 +7,6 @@
  */
 package ro.anzisoft.device.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jpos.JposException;
@@ -101,7 +100,19 @@ public interface MfaDevice extends BaseService { // FiscalPrinterService114
 	 *                       <i>errorCode</i>=MFA_ERR_EXTENDED + <i>codeExtended</i>=MFA_ERRX_BAD_ITEM_DESCRIPTION: Serie fiscala gresita<br>
 	 */
 	void fiscalizationExchange(String companyName, String storeName, String address, String address2, String companyCif, String bnrCode, String amefFiscalId) throws JposException;
-
+	
+	/**
+	 * 
+	 * @param companyName
+	 * @param storeName
+	 * @param address
+	 * @param address2
+	 * @param companyCif
+	 * @param vendingSerial
+	 * @param amefFiscalId
+	 * @throws JposException
+	 */
+	void fiscalizationVending(String companyName, String storeName, String address, String address2, String companyCif, String vendingSerial, String amefFiscalId) throws JposException;
 	/**
 	 * Seteaza cota de tva pentru exchange <br>
 	 * <p>
@@ -629,6 +640,7 @@ public interface MfaDevice extends BaseService { // FiscalPrinterService114
 	 */
 	void reportInitDMJE() throws JposException;
 
+	void reportInitDMJE(int outputType) throws JposException;
 	/**
 	 * Raport cu schimbarile de antet <br>
 	 * 
@@ -636,6 +648,8 @@ public interface MfaDevice extends BaseService { // FiscalPrinterService114
 	 */
 	void reportChangeHeader() throws JposException;
 
+	void reportChangeHeader(int outputType) throws JposException;
+	
 	/**
 	 * Raport caderi tensiune <br>
 	 * Print intotdeauna
