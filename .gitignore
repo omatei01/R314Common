@@ -1,3 +1,5 @@
 /.gradle/
 /build/
 sh.exe.stackdump
+/bin/
+/.settings/
