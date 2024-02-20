@@ -1468,6 +1468,7 @@ public interface MfaDevice extends BaseService { // FiscalPrinterService114
 
 	/**
 	 * copiaza fisierul de pe pos in root usb stick
+	 * 
 	 * @param filePath
 	 * @throws JposException
 	 */
@@ -2049,4 +2050,35 @@ public interface MfaDevice extends BaseService { // FiscalPrinterService114
 
 	public long sendNotif(String category, String subject, String message);
 
+	/**
+	 *  0 - nu exista
+	 * -1 - consumat
+	 * -2 - expirat
+	 * >0 - valabil si exprima suma voucherului
+	 * 
+	 * @param serial
+	 * @return
+	 */
+	public int checkVoucherAD(String serial);
+
+	/**
+	 * 
+	 * 
+	 * @param serial
+	 *            serial voucher
+	 * @return 
+	 */
+	public void consumeVoucherADFromReceipt(String serial);
+
+	/**
+	 * 
+	 * @param serial
+	 */
+	public void consumeVoucherADRefund(String serial);
+	
+	/**
+	 * 
+	 * @param serial
+	 */
+	public void revertVoucherAD(String serial);
 }
