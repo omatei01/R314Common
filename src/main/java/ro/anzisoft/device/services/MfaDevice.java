@@ -2051,34 +2051,83 @@ public interface MfaDevice extends BaseService { // FiscalPrinterService114
 	public long sendNotif(String category, String subject, String message);
 
 	/**
-	 *  0 - nu exista
+	 * 0 - nu exista
 	 * -1 - consumat
 	 * -2 - expirat
 	 * >0 - valabil si exprima suma voucherului
 	 * 
 	 * @param serial
+	 * @param voucherTypeZSales 1 sau 2
+	 * @param customerId orice inclusiv null
 	 * @return
 	 */
-	public int checkVoucherAD(String serial);
+	//public int checkVoucherAD(String serial) throws JposException;
 
+	public int checkVoucherAD(String serial, int voucherTypeZSales, String customerId) throws JposException;
+
+	/**
+	 * Returneaza o lista cu voucherele valide pentru un anumit client
+	 * E o lista de strings de forma: barcodeVoucher;amount
+	 *  
+	 * @param customerId
+	 * @return
+	 * @throws JposException
+	 */
+	public List<String> getVoucherAD(String customerId) throws JposException;
 	/**
 	 * 
 	 * 
 	 * @param serial
 	 *            serial voucher
-	 * @return 
+	 * @return
 	 */
-	public void consumeVoucherADFromReceipt(String serial);
+	public void consumeVoucherADFromReceipt(String serial) throws JposException;
+
+	public void consumeVoucherADFromReceipt(String serial, String customerId) throws JposException;
 
 	/**
 	 * 
 	 * @param serial
 	 */
-	public void consumeVoucherADRefund(String serial);
+	public void consumeVoucherADRefund(String serial) throws JposException;
 	
+
+	public void consumeVoucherADRefund(String serial, String customerID) throws JposException;
+
 	/**
 	 * 
 	 * @param serial
 	 */
-	public void revertVoucherAD(String serial);
+	public void revertVoucherAD(String serial) throws JposException;
+
+	/**
+	 * Functie completa de aprobare cu parametrii
+	 * 
+	 * @param verificationCode
+	 *            codul de verificat
+	 * @param operType
+	 *            tipul operatiei.. de ex plata
+	 * @param params
+	 *            optionali parametrii care folosesc de ex limita suma
+	 * @return
+	 */
+	public boolean getApprovalOfflineOTP(int verificationCode, String operType, String... params)  throws JposException;
+
+	/**
+	 * Functie sipla care veririfca doar un cod de 6 cifre
+	 * 
+	 * @param verificationCode
+	 * @return
+	 */
+	public boolean getApprovalOfflineOTP(int verificationCode) throws JposException;
+	
+	/**
+	 * Creaza un voucher in AD de tip SGR cu suma transmisa ca parametru
+	 * Returneaza un code pt voucherBarcode
+	 * 
+	 * @param amount 
+	 * @return
+	 * @throws JposException
+	 */
+	public String createVoucherSGR(int amount) throws JposException;
 }
