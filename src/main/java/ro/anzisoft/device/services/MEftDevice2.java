@@ -50,7 +50,8 @@ public interface MEftDevice2 extends BaseService {
 	 * 
 	 * @param amount
 	 * @return daca e true at plata e acceptata altfel false;
-	 * @throws JposException orice eroare de protocol etc care inseamna ca plata e respinsa!!!
+	 * @throws JposException
+	 *             orice eroare de protocol etc care inseamna ca plata e respinsa!!!
 	 */
 	public boolean makePayment(long amount) throws JposException;
 
@@ -64,6 +65,8 @@ public interface MEftDevice2 extends BaseService {
 	public String getSoftwareId();
 
 	public String getSerialPort();
+
+	public int getLastResponseCode();
 
 	public String getLastResponse();
 
@@ -90,6 +93,7 @@ public interface MEftDevice2 extends BaseService {
 
 	/**
 	 * daca are implementata settlement
+	 * 
 	 * @return
 	 * @throws JposException
 	 */

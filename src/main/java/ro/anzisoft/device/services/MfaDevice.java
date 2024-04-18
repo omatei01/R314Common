@@ -2130,4 +2130,36 @@ public interface MfaDevice extends BaseService { // FiscalPrinterService114
 	 * @throws JposException
 	 */
 	public String createVoucherSGR(int amount) throws JposException;
+	
+	
+	/**
+	 * Pentru gestionare retrageri cash/golire sertar/ predare
+	 * Se duce prin znet in AD
+	 * E PV de retragere
+	 * NU returneaza nimic doar da err daca e vreo problema. Se va transmite offline 
+	 * @param docNo nr pv gestionat de pos
+	 * @param timestamp data pv 
+	 * @param user utilizato de pos prntu agent/filler
+	 * @param docType 1=remitere POS/ 2=alimentare POS
+	 * @param amount - suma de pe pv 
+	 * @param currency - valuta
+	 * @param description - o descriere
+	 * 
+	 * @throws JposException
+	 */
+	public void cashMovement(String docNo, long timestamp, String user, int docType, int amount, String currency, String description) throws JposException;
+
+	/**
+	 * pentru timeout 998
+	 * @return
+	 * @throws JposException
+	 */
+	public int eftLastResponseCode() throws JposException;
+	
+	public boolean eftPreauthorization(String docPlataID, long amount) throws JposException;
+	
+	public boolean eftPreauthorizationComplete(String docPlataID, long amount) throws JposException;
+	
+	public boolean eftPreauthorizationVoid(String docPlataID) throws JposException;	
 }
+
