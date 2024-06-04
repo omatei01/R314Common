@@ -2161,5 +2161,9 @@ public interface MfaDevice extends BaseService { // FiscalPrinterService114
 	public boolean eftPreauthorizationComplete(String docPlataID, long amount) throws JposException;
 	
 	public boolean eftPreauthorizationVoid(String docPlataID) throws JposException;	
+	
+	public boolean isStockSynchronized();
+	
+	public long getLastTimeForStockReset();
 }
 
