@@ -14,21 +14,24 @@ public interface MEftDevice3 extends MEftDevice2 {
 
 	/**
 	 * 
+	 * returneaza un id care se cva folosi la completion sau void
+	 * daca nu reuseste da err
+	 * 
 	 * @param amount
-	 * @param transactionId optional
+	 * 
 	 * @return
 	 * @throws JposException
 	 */
-	public boolean preauthorization(long amount, int transactionId) throws JposException;
+	String preauthorization(long amount) throws JposException;
 
 	/**
 	 * 
-	 * @param amount
-	 * @param transactionId
+	 * @param id tranzact care se anuleaza
 	 * @return
 	 * @throws JposException
 	 */
-	public boolean preauthorizationVoid() throws JposException;
+	void preauthorizationVoid(String id, long amount) throws JposException;
+
 	/**
 	 * 
 	 * @param amount
@@ -36,7 +39,12 @@ public interface MEftDevice3 extends MEftDevice2 {
 	 * @param authCode
 	 * @return
 	 * @throws JposException
-	 */	
-	boolean preauthorizationComplete(long amount) throws JposException;
+	 */
+	void preauthorizationComplete(String id, long amount) throws JposException;
 
+	
+	public boolean posReportInitialization() throws JposException;
+	public boolean posGetPosReportRecord() throws JposException;
+	
+	
 }
