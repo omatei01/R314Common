@@ -35,8 +35,10 @@ import java.text.ChoiceFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -44,7 +46,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-//import javax.xml.bind.DatatypeConverter;
+// import javax.xml.bind.DatatypeConverter;
 
 import javax.xml.bind.DatatypeConverter;
 
@@ -713,6 +715,41 @@ public class MUtils {
 		return result;
 	}
 
+	public static String toHexInt(int byteParam) {
+		String hex = Integer.toHexString(0xFF & byteParam);
+		return hex;
+	}
+	
+	public static String toHexString(ArrayList<Byte> byteList) {
+		// Transformă ArrayList într-un array de tip byte[]
+		byte[] byteArray = object2Byte(byteList);
+		for (int i = 0; i < byteList.size(); i++) {
+			byteArray[i] = byteList.get(i);
+		}
+		return toHexString(byteArray);
+	}
+
+	public static String toHexString2(ArrayList<Byte> byteList) {
+		// Transformă ArrayList într-un array de tip byte[]
+		byte[] byteArray = object2Byte(byteList);
+		return toHexString2(byteArray);
+	}
+
+	
+	/**
+	 * pt conversie din ArrayList-Byte in byte[]
+	 * 
+	 * @param obj
+	 * @return
+	 */
+	public static byte[] object2Byte(ArrayList<Byte> list) {
+
+		byte[] response = new byte[list.size()];
+		for (int i = 0; i < list.size(); i++) {
+			response[i] = list.get(i);
+		}
+		return response;
+	}
 	/**
 	 * se foloseste la scriere in log din driver printer
 	 * 
@@ -1287,5 +1324,8 @@ public class MUtils {
 			return null;
 		}
 		return array.clone();
+	}
+	public static String getDateStringForId(long timestamp) {
+		return new SimpleDateFormat("ddMMyyyyHHmmss").format(new Date(timestamp));
 	}
 }

@@ -13,8 +13,8 @@ import ro.anzisoft.device.services.MLcdDevice;
 
 /**
  * Ăsta e un control care nu respectă specificațiile JavaPos.<br>
- * Interfața specifica e definite in R314Common, MDisplayInterface.<br>
- * Servciciul din R314Pi e PiLineDisplayService<br>
+ * Interfața specifica e definite in R314Common, MDisplayInterface. <br>
+ * Serviciul din R314Pi e PiLineDisplayService <br>
  * <p>
  * 
  * @author omatei01
@@ -43,9 +43,9 @@ public class MLcdControl extends MBaseControl implements JposConst {
 			this.service = (MLcdDevice) service;
 		} catch (final Exception e) {
 			throw new JposException(
-			        JPOS_E_NOSERVICE,
-			        "Service does not fully implement PiLineDisplayService interface",
-			        e);
+					JPOS_E_NOSERVICE,
+					"Service does not fully implement PiLineDisplayService interface",
+					e);
 		}
 	}
 
@@ -56,7 +56,9 @@ public class MLcdControl extends MBaseControl implements JposConst {
 	 * @throws JposException
 	 */
 	public void clear() throws JposException {
-		if (!this.controlOpen) { throw new JposException(JPOS_E_CLOSED, "Control not opened"); }
+		if (!this.controlOpen) {
+			throw new JposException(JPOS_E_CLOSED, "Control not opened");
+		}
 		// Perform the operation
 		try {
 			this.service.clear();
@@ -69,7 +71,9 @@ public class MLcdControl extends MBaseControl implements JposConst {
 
 	public void display(String arg0, String arg1) throws JposException {
 		// Make sure control is opened
-		if (!this.controlOpen) { throw new JposException(JPOS_E_CLOSED, "Control not opened"); }
+		if (!this.controlOpen) {
+			throw new JposException(JPOS_E_CLOSED, "Control not opened");
+		}
 		Logger.debug("display : " + arg0);
 		// Perform the operation
 		try {

@@ -1946,6 +1946,8 @@ public interface MfaDevice extends BaseService { // FiscalPrinterService114
 	 */
 	boolean checkIfPaymentIdIsOk(String id) throws JposException;
 
+	/*void eftMonitorConnections();*/
+	
 	// public void eftClose() throws JposException;
 
 	public boolean isInternetAvailable() throws JposException;
